@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #0056b3;
+        }
+        .timer {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="app">
+        <nav>
+            <a href="#" onclick="showSection('addItem')">Add Item</a>
+            <a href="#" onclick="showSection('viewBids')">View Bids</a>
+            <a href="#" onclick="showSection('placeBid')">Place Bid</a>
+        </nav>
+
+        <!-- Add Item Section -->
+        <div id="addItem" style="display: none;">
+            <h2>Add New Item for Bidding</h2>
+            <input type="text" id="itemName" placeholder="Item Name" required>
+            <input type="number" id="itemStartingBid" placeholder="Starting Bid" required>
+            <input type="number" id="bidDuration" placeholder="Bid Duration (in minutes)" required>
+            <button onclick="addItem()">Add Item</button>
+        </div>
+
+        <!-- View Bids Section -->
+        <div id="viewBids" style="display: none;">
+            <h2>Current Bids</h2>
+            <div id="itemList"></div>
+        </div>
+
+        <!-- Place Bid Section -->
+        <div id="placeBid" style="display: none;">
+            <h2>Bid on an Item</h2>
+            <select id="itemSelect"></select>
+            <p id="timeRemaining"></p>
+            <input type="text" id="bidderName" placeholder="Your Name" required>
+            <input type="number" id="bidAmount" placeholder="Enter your bid" min="1" required>
+            <button onclick="placeBid()">Place Bid</button>
+        </div>
+    </div>
+
+    <script>
+        // Navigation: Show/Hide Sections
+        function showSection(sectionId) {
+            document.getElementById('addItem').style.display = 'none';
+            document.getElementById('viewBids').style.display = 'none';
+            document.getElementById('placeBid').style.display = 'none';
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Fetch image from Wikimedia based on item name
+        async function fetchImageFromWikimedia(itemName) {
+            try {
+                const response = await fetch(`https://commons.wikimedia.org/w/api.php?action=query&prop=imageinfo&format=json&generator=search&gsrsearch=${encodeURIComponent(itemName)}&gsrlimit=1&iiurlwidth=200&iiurlheight=200&iiprop=url&origin=*`);
+                const data = await response.json();
+                const pages = data.query.pages;
+                const firstPageId = Object.keys(pages)[0];
+                return pages[firstPageId].imageinfo[0].url;
+            } catch (error) {
+                console.error('Error fetching image:', error);
+                return 'default-image-url.jpg'; // Fallback image if none is found
+            }
+        }
+
+        // Add New Item
+        async function addItem() {
+            const itemName = document.getElementById('itemName').value;
+            const itemStartingBid = parseFloat(document.getElementById('itemStartingBid').value);
+            const bidDuration = parseInt(document.getElementById('bidDuration').value); // Get bid duration in minutes
+
+            if (itemName && itemStartingBid && bidDuration) {
+                const imageUrl = await fetchImageFromWikimedia(itemName); // Fetch the image for the item
+                const currentTime = new Date(); // Current time
+                const bidEndTime = new Date(currentTime.getTime() + bidDuration * 60000); // Calculate the end time
+
+                const item = {
+                    name: itemName,
+                    startingBid: itemStartingBid,
+                    currentBid: itemStartingBid,
+                    currentBidder: "None",
+                    imageUrl: imageUrl, // Store the image URL with the item
+                    bidEndTime: bidEndTime.toISOString() // Store the bid end time as a string
+                };
+
+                const items = JSON.parse(localStorage.getItem('items')) || [];
+                items.push(item);
+                localStorage.setItem('items', JSON.stringify(items));
+
+                alert('Item added successfully!');
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemStartingBid').value = '';
+                document.getElementById('bidDuration').value = '';
+            } else {
+                alert('Please enter all fields.');
+            }
+        }
+
+        // Load Items for View Bids Section
+        function loadItems() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemList = document.getElementById('itemList');
+            itemList.innerHTML = '';
+
+            const now = new Date();
+
+            items.forEach(item => {
+                const bidEndTime = new Date(item.bidEndTime); // End time for the item
+                if (bidEndTime > now) { // Only show if bid is still active
+                    const remainingTime = calculateRemainingTime(item.bidEndTime); // Calculate remaining time
+
+                    itemList.innerHTML += `
+                        <div class="item-card">
+                            <h4>${item.name}</h4>
+                            <p>Current Bid: $<span class="current-bid">${item.currentBid.toFixed(2)}</span></p>
+                            <p>Bid Holder: ${item.currentBidder}</p>
+                            <img src="${item.imageUrl}" alt="${item.name}" onerror="this.src='default-image-url.jpg';">
+                            <p class="timer">Time Left: ${remainingTime}</p>
+                        </div>`;
+                }
+            });
+        }
+
+        // Calculate remaining time and format it as HH:MM:SS
+        function calculateRemainingTime(endTime) {
+            const now = new Date();
+            const timeLeft = new Date(endTime) - now;
+            if (timeLeft <= 0) return "00:00:00";
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Place Bid
+        function placeBid() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemIndex = document.getElementById('itemSelect').value;
+            const bidAmount = parseFloat(document.getElementById('bidAmount').value);
+            const bidderName = document.getElementById('bidderName').value;
+
+            const selectedItem = items[itemIndex];
+            if (Date.now() > new Date(selectedItem.bidEndTime).getTime()) {
+                alert("Bidding has ended for this item.");
+                return;
+            }
+
+            if (bidAmount > selectedItem.currentBid) {
+                selectedItem.currentBid = bidAmount;
+                selectedItem.currentBidder = bidderName;
+                localStorage.setItem('items', JSON.stringify(items));
+
+                alert('Bid placed successfully!');
+                loadItems(); // Reload the updated list
+                document.getElementById('bidAmount').value = '';
+                document.getElementById('bidderName').value = '';
+            } else {
+                alert('Bid must be higher than the current bid.');
+            }
+        }
+
+        // Load Items for Place Bid Section
+        function loadPlaceBidItems() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemSelect = document.getElementById('itemSelect');
+            itemSelect.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const timeRemaining = new Date(item.bidEndTime) - Date.now();
+                if (timeRemaining > 0) {
+                    itemSelect.innerHTML += `<option value="${index}">${item.name} - Current Bid: $${item.currentBid}</option>`;
+                } else {
+                    itemSelect.innerHTML += `<option value="${index}" disabled>${item.name} - Sold to ${item.currentBidder} for $${item.currentBid}</option>`;
+                }
+            });
+
+            updateTimeRemaining();
+        }
+
+        // Update timer in Place Bid Section
+        function updateTimeRemaining() {
+            const itemIndex = document.getElementById('itemSelect').value;
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const selectedItem = items[itemIndex];
+            const timeRemaining = new Date(selectedItem.bidEndTime) - Date.now();
+
+            if (timeRemaining > 0) {
+                const minutes = Math.floor(timeRemaining / 60000);
+                const seconds = Math.floor((timeRemaining % 60000) / 1000);
+                document.getElementById('timeRemaining').innerText = `Time remaining: ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById('timeRemaining').innerText = `This item is sold to ${selectedItem.currentBidder} for $${selectedItem.currentBid}`;
+            }
+        }
+
+        // Update the timer every second
+        function startTimerUpdate() {
+            setInterval(updateTimeRemaining, 1000);
+        }
+
+        // Initialization
+        window.onload = function() {
+            showSection('addItem'); // Default section
+            loadItems(); // Load items for View Bids
+            loadPlaceBidItems(); // Load items for Place Bids
+            startTimerUpdate(); // Start timer updates
+        };
+    </script>
+</body>
+</html>

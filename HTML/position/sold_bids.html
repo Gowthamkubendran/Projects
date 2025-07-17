@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sold Bids Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Soft Beige */
+            color: #333333; /* Dark Gray */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #FFFFFF; /* White */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50; /* Deep Green */
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .item-card {
+            background-color: #FFFFFF; /* White */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card h4 {
+            margin: 0 0 10px;
+            color: #4CAF50; /* Deep Green */
+        }
+
+        .item-card p {
+            margin: 5px 0;
+        }
+
+        .item-card .current-bid {
+            font-weight: bold;
+            color: #FF9800; /* Warm Orange */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #FF9800; /* Warm Orange */
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4CAF50; /* Deep Green */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sold Bids Details</h2>
+        <div id="soldItemList"></div>
+    </div>
+
+    <script>
+        function loadSoldItems() {
+            const soldItems = JSON.parse(localStorage.getItem('soldItems')) || [];
+            const soldItemList = document.getElementById('soldItemList');
+            soldItemList.innerHTML = '';
+
+            soldItems.forEach(item => {
+                soldItemList.innerHTML += `
+                    <div class="item-card">
+                        <h4>${item.name}</h4>
+                        <p>Sold for: $<span class="current-bid">${item.currentBid.toFixed(2)}</span></p>
+                        <p>Sold to: ${item.currentBidder}</p>
+                    </div>`;
+            });
+        }
+
+        window.onload = loadSoldItems;
+    </script>
+</body>
+</html>

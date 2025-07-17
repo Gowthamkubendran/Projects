@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Toast</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/aa005654b3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="buttons">
+        <button class="button">Success</button>
+        <button class="button">Error</button>
+        <button class="button">Invalid</button>
+    </div>
+    <div class="toastbox"></div>
+
+    
+
+    <script>
+        const toastbox=document.querySelector(".toastbox");
+        const buttons=document.querySelectorAll(".button");
+
+        
+        buttons.forEach((button)=>{
+            button.addEventListener("click",()=>{
+                const toast=document.createElement("div");
+                toast.classList.add("toast");
+                toastbox.prepend(toast);
+                if(button.textContent === "Success"){
+                    toast.classList.add("success");
+                    let content='<i class="fa-solid fa-circle-check"></i>Successfully Submitted.';
+                 toast.innerHTML=content;
+    }else if(button.textContent === "Error"){
+                    toast.classList.add("error");
+                    let content='<i class="fa-solid fa-circle-xmark"></i>Please fix the error.';
+                 toast.innerHTML=content;
+    }else{
+        toast.classList.add("invalid");
+                    let content='<i class="fa-solid fa-circle-exclamation"></i>invalid input check again.';
+                 toast.innerHTML=content;
+    }
+
+    setTimeout(()=>{
+        toast.remove();
+    },5000);
+            });
+        });
+    
+
+    
+    </script>
+</body>
+</html>

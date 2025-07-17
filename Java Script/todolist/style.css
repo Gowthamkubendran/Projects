@@ -1,0 +1,119 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    min-height: 85vh;
+    height: 100%;
+    background: linear-gradient(135deg,rgb(0, 42, 77),rgb(2, 95, 188));
+}
+
+.container{
+    width: 100%;
+    max-width: 500px;
+    margin:100px auto;
+    padding: 20px 30px;
+    padding-bottom: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.container h1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:20px 0px;
+}
+
+.container h1 img{
+    width: 50px;
+}
+
+.container div{
+    background-color: #ccc;
+    display: flex;
+    border-radius: 80px;
+    margin-bottom: 20px;
+}
+#text{
+    background: transparent;
+    flex: 1;
+    outline: none;
+    border:none;
+    padding: 15px;
+    font-size: 15px;
+    color: black;
+}
+
+.container div button{
+    width: 120px;
+    background: linear-gradient(rgb(4, 127, 228),rgb(2, 95, 188));
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 80px;
+    cursor: pointer;
+}
+
+#listcontainer{
+    padding: 20px;
+   
+
+}
+#listcontainer li{
+    list-style: none;
+    margin:10px;
+    position: relative;
+    padding:10px;
+    padding-left: 50px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#listcontainer li::before{
+    content:'';
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-image:url(images/unchecked.png);
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top:11px;
+    left: 5px;
+    cursor: pointer;
+}
+
+#listcontainer li.checked{
+    color: red;
+}
+#listcontainer li.checked::before{
+    background-image:url(images/checked.png);
+ }
+
+
+
+span:hover{
+    background-color:#e8e8e8;
+ }
+
+ span{
+    font-size: 25px;
+    border: 50%;
+    width: 32px;
+    text-align: center;
+    text-decoration:none;
+    color: black;
+    cursor: pointer;
+    border-radius: 50%; 
+    font-size: 30px;
+ }

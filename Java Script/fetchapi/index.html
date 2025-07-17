@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<style>
+        body{
+            background-color:purple;
+        }
+        div{
+            margin: 30px auto;
+            width: 90%;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        div img{
+            width: 100%;
+            height: 250px;
+        }
+
+        h1{
+            color:darkorange;
+        }
+	</style>
+</head>
+<body>
+    <h1 >Image Searcher</h1>
+    <form style="display: flex; flex-direction: column; width:90%; align-items: center;row-gap: 20px;margin:15px;" id="t1">
+        <input type="text" placeholder="enter name" id="textbox" style="width: 300px; height: 25px;">
+        <button  id="button" style="width: 150px;">search</button>  
+    </form>
+     <div class="div" id="container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

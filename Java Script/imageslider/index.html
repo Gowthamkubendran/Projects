@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="next-btn"><img src="images/next.png"></div>
+        <div class="imgslider">
+            <div class="gallery">
+                <img src="images/image-1.png">
+                <img src="images/image-2.png">
+                <img src="images/image-3.png">
+            </div>
+            <div class="gallery">
+                <img src="images/image-4.png">
+                <img src="images/image-5.png">
+                <img src="images/image-6.png">
+            </div>
+		
+           <div class="gallery">
+                <img src="images/image-1.png">
+                <img src="images/image-2.png">
+                <img src="images/image-3.png">
+            </div>
+
+            
+            
+        </div>
+        <div id="back-btn"><img src="images/back.png"></div>
+    </div>
+
+
+    <script>
+        let scrollcontainer=document.querySelector(".imgslider");
+        let backbtn=document.getElementById("back-btn");
+        let nextbtn=document.getElementById("next-btn");
+        let cont=document.getElementsByClassName("container");
+
+        scrollcontainer.addEventListener("wheel",(event)=>{
+            scrollcontainer.style.scrollBehavior="auto";
+            event.preventDefault();
+        scrollcontainer.scrollLeft += event.deltaY;
+    
+
+    });
+
+    backbtn.addEventListener("click",(event)=>{
+        scrollcontainer.style.scrollBehavior="smooth";
+            scrollcontainer.scrollLeft-=310;
+            
+      
+    });
+
+    nextbtn.addEventListener("click",(event)=>{
+        scrollcontainer.style.scrollBehavior="smooth";
+            scrollcontainer.scrollLeft+=310;
+          
+    });
+ let interval;
+ myfunc1();
+ function myfunc1(){ 
+    interval=setInterval(()=>{
+        if(scrollcontainer.scrollLeft>1470){
+           
+            scrollcontainer.style.scrollBehavior="auto";
+            scrollcontainer.scrollLeft=0;
+        }else{
+            scrollcontainer.style.scrollBehavior="smooth";
+        scrollcontainer.scrollLeft+=330;
+       }
+        },2000);}
+
+    scrollcontainer.addEventListener("mouseover",myfunc);
+    nextbtn.addEventListener("mouseover",myfunc);
+    backbtn.addEventListener("mouseover",myfunc);
+    nextbtn.addEventListener("mouseout",myfunc1);
+    backbtn.addEventListener("mouseout",myfunc1);
+    scrollcontainer.addEventListener("mouseout",myfunc1);
+    function myfunc(){
+        clearInterval(interval);
+    }
+
+    </script>
+</body>
+</html>

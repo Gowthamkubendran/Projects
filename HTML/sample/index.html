@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" initial-scale="1.0">
+        <title>Java Script</title>
+
+
+        <style>
+          #f1{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 150px;
+          }
+          #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 40px;
+            
+          }
+          #d1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+          }
+          #score{
+            border: 2px solid black;
+            border-radius: 3px;
+           position: relative;
+           left: 50px;
+           bottom: 20px;
+            width: 100px;
+            height:80px;
+          }
+          .timer{
+            display: flex;
+            align-items: center;
+          }
+          .times{
+            font-size: 1.7em;
+            color: red;
+            padding: 5px;
+          }
+          #f1 input{
+            color: blue;
+            font-weight: 600;
+          }
+          
+        </style>
+
+
+    </head>
+
+
+    <body>
+      <h1 class="msg" style="text-align: center;">FLASH POINT ADDITION</h1>
+      <div id="container">
+        <div class="timer"><h2>Timer : </h2><div class="times"></div></div>
+        <form id="f1">
+         Random number1: <input type="text" id="n1"/>
+         
+          Random number2:<input type="text" id="n2"/>
+       
+          Enter the Answer:<input type="text" id="n3" onchange="add()"/>
+         
+        </form>
+          <div id="score">
+            <h3 style="text-align: center;text-decoration: underline;">SCORE</h3>
+           
+            <h1 id="res" style="text-align: center;position: relative;bottom: 20px;"></h1>
+          </div>
+      </div>
+     <div id="d1"></div>
+
+
+
+      <script>
+        var interval;var count=1;
+        var v=0;var v1=0,score=0;var T;
+
+
+        ran();
+        intervalTimer();
+        function ran() {
+        v=parseInt(Math.floor(Math.random()*100));
+        document.getElementById('n1').value=v;
+        v1=parseInt(Math.floor(Math.random()*100));
+        document.getElementById('n2').value=v1;    
+      }
+
+
+      t();
+
+     function t(){ 
+       clearInterval(T);T=window.setInterval(intervalTimer,1000);
+      }
+
+
+      function intervalTimer(){
+          if(count<6){document.querySelector(".times").innerHTML=count;
+          count++;}
+          else{ count=1;document.querySelector(".times").innerHTML=count;count++;}
+      }
+
+
+      startInterval();
+  
+    function startInterval(){  
+      clearInterval(interval);
+      interval=window.setInterval(ran,5000);
+    }
+
+
+
+    
+      function add(){
+        var sum=v+v1;
+        var v3=document.getElementById('n3').value;
+        
+        if(sum==v3){
+          startInterval();
+          ran();
+          count=1;
+          intervalTimer();
+          t();
+          document.getElementById('res').innerHTML=++score;
+          document.getElementById("n3").value="";
+        }
+        else{
+         document.write("<h1>"+"Total score: "+score+"</h1>");
+        }
+      }
+      </script>
+
+      
+    </body>
+
+</html>

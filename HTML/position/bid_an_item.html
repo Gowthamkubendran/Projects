@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid on Item</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Soft Beige */
+            color: #333333; /* Dark Gray */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #FFFFFF; /* White */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        h2 {
+            text-align: center;
+            color: #4CAF50; /* Deep Green */
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Select and Input Styles */
+        select, input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #4CAF50; /* Deep Green */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #FF9800; /* Warm Orange */
+        }
+
+        /* Button Styles */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF9800; /* Warm Orange */
+            color: #FFFFFF; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #4CAF50; /* Deep Green */
+        }
+
+        /* Time Remaining Styles */
+        #timeRemaining {
+            text-align: center;
+            font-weight: bold;
+            color: #FF9800; /* Warm Orange */
+            margin-top: 10px;
+        }
+
+        /* Placeholder Text Styles */
+        ::placeholder {
+            color: #AAAAAA; /* Light Gray */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bid on an Item</h2>
+        <select id="itemSelect" onchange="updateTimeRemaining()"></select>
+        <p id="timeRemaining"></p>
+        <input type="text" id="bidderName" placeholder="Your Name" required>
+        <input type="number" id="bidAmount" placeholder="Enter your bid" min="1" required>
+        <button onclick="placeBid()">Place Bid</button>
+    </div>
+
+    <script>
+        // Load the items and populate the select dropdown
+        function loadItems() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemSelect = document.getElementById('itemSelect');
+            itemSelect.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const bidEndTime = new Date(item.bidEndTime); // Ensure bidEndTime is parsed as a Date object
+                const timeRemaining = bidEndTime - Date.now();
+                const itemOption = document.createElement('option');
+                itemOption.value = index;
+                itemOption.innerText = `${item.name} - Current Bid: $${item.currentBid}`;
+
+                if (timeRemaining > 0) {
+                    itemSelect.appendChild(itemOption);
+                } else {
+                    itemOption.disabled = true;
+                    itemOption.innerText = `${item.name} - Sold to ${item.currentBidder} for $${item.currentBid}`;
+                    itemSelect.appendChild(itemOption);
+                }
+            });
+
+            updateTimeRemaining();
+        }
+
+        // Function to update the timer for the selected item
+        function updateTimeRemaining() {
+            const itemIndex = document.getElementById('itemSelect').value;
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const selectedItem = items[itemIndex];
+            const bidEndTime = new Date(selectedItem.bidEndTime); // Ensure bidEndTime is parsed as Date
+            const timeRemaining = bidEndTime - Date.now();
+
+            if (timeRemaining > 0) {
+                const minutes = Math.floor(timeRemaining / 60000);
+                const seconds = Math.floor((timeRemaining % 60000) / 1000);
+                document.getElementById('timeRemaining').innerText = `Time remaining: ${minutes}m ${seconds}s`;
+            } else {
+                document.getElementById('timeRemaining').innerText = `This item is sold to ${selectedItem.currentBidder} for $${selectedItem.currentBid}`;
+            }
+        }
+
+        // Function to place a bid on the selected item
+        function placeBid() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemIndex = document.getElementById('itemSelect').value;
+            const bidAmount = parseFloat(document.getElementById('bidAmount').value);
+            const bidderName = document.getElementById('bidderName').value;
+
+            const selectedItem = items[itemIndex];
+            const bidEndTime = new Date(selectedItem.bidEndTime); // Ensure bidEndTime is parsed as Date
+            if (Date.now() > bidEndTime.getTime()) {
+                alert("Bidding has ended for this item.");
+                return;
+            }
+
+            if (bidAmount > selectedItem.currentBid) {
+                selectedItem.currentBid = bidAmount;
+                selectedItem.currentBidder = bidderName;
+                localStorage.setItem('items', JSON.stringify(items));
+
+                alert('Bid placed successfully!');
+                loadItems(); // Reload the updated list
+                document.getElementById('bidAmount').value = '';
+                document.getElementById('bidderName').value = '';
+            } else {
+                alert('Bid must be higher than the current bid.');
+            }
+        }
+
+        // Update the timer every second
+        function startTimerUpdate() {
+            setInterval(updateTimeRemaining, 1000);
+        }
+
+        // Load items and start the timer when the page loads
+        window.onload = function() {
+            loadItems();
+            startTimerUpdate();
+        };
+    </script>
+</body>
+</html>

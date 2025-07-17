@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduford University --Trichy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="about-container">
+        <div class="header">
+            
+                <a class="logo"  href="#"><img src="eduford_img/logo.png" alt=""></a>
+    
+            <div class="menu" id="i1">
+                <div class="cross"><i  class="fa fa-times-circle" onclick="hidemenu()"></i></div>
+                    <a href="index.html" class="home">HOME</a>
+                    <a href="course.html">COURSE</a>
+                    <a href="blog.html">BLOG</a>
+                    <a href="about.html">ABOUT</a> 
+                    <a href="contact.html">CONTACT</a>          
+            </div>
+          <div class="menubar"><i class="fa fa-bars"   onclick="showmenu()"></i></div>
+        </div>
+        <h1>About Us</h1>
+
+    </section>
+
+
+<section class="aboutus-content">
+    <div class="content">
+    <h1>We are the world's largest university</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis eius facere quas aliquid quidem vero temporibus in omnis consequuntur accusantium numquam labore asperiores sunt incidunt, ipsa, quis sapiente. Blanditiis omnis non alias deserunt similique eius aperiam quasi architecto! Quos necessitatibus aliquam accusantium rerum soluta quasi temporibus, blanditiis reprehenderit vitae modi quam, quis earum! Deserunt, voluptatibus rem labore veritatis voluptatum voluptates aspernatur optio nam tempore distinctio, sapiente architecto, culpa pariatur vero sit natus reprehenderit unde harum!</p>
+   <div><a href="#">Explore Now</a></div>
+    </div>
+    <img src="/eduford_img/about.jpg">
+</section>
+
+    
+
+
+
+
+
+   
+
+
+
+
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptatum, exercitationem accusamus obcaecati <br> quibusdam rem iure quaerat eveniet asperiores vitae perspiciatis dolorum vel illo.</p>
+        <div>
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+    </section>
+    <script>
+        function showmenu(){
+            var k=document.getElementById("i1");
+           k.style.left="0%";
+        }
+        function hidemenu(){
+            var k=document.getElementById("i1");
+            k.style.left="-400px";
+        }
+    </script>
+</body>
+</html>

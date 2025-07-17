@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lucky Farm - Multilingual</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Translate Icon Button */
+    #translateBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #translateBtn img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    #translateBtn:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Translate Dropdown */
+    #google_translate_element {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      z-index: 1000;
+      background: white;
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: none; /* hidden by default */
+    }
+
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-banner-frame,
+    body > .skiptranslate {
+      display: none !important;
+    }
+
+    html body .goog-te-banner-frame,
+    html body .goog-te-banner-frame.skiptranslate {
+      top: 0!important;
+      z-index: 99999 !important;
+    }
+
+    .goog-logo-link {
+      position: fixed !important;
+      bottom: 10px;
+      right: 10px;
+      z-index: 9999;
+      font-size: 11px !important;
+      opacity: 0.5;
+      background: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome to Lucky Farm</h1>
+<p>We grow organic & healthy mushrooms for you and your family.</p>
+
+<!-- Translate Toggle Button -->
+<div id="translateBtn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png" alt="Translate">
+</div>
+
+<!-- Google Translate Element -->
+<div id="google_translate_element"></div>
+
+<!-- Cookie handling BEFORE loading Translate -->
+<script>
+(function() {
+  var lang = (document.cookie.match(/(^|;\s*)googtrans=\/en\/(\w+)/) || [])[2];
+  if (lang) {
+    var newCookie = "/en/" + lang;
+    document.cookie = "googtrans=" + newCookie + ";path=/";
+    document.cookie = "googtrans=" + newCookie + ";path=/;domain=" + location.hostname;
+  }
+})();
+</script>
+
+<!-- Google Translate Script -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ta,hi',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Toggle & Auto-hide Logic -->
+<script>
+  const translateBtn = document.getElementById('translateBtn');
+  const translateBox = document.getElementById('google_translate_element');
+
+  // Toggle visibility on click
+  translateBtn.addEventListener('click', () => {
+    translateBox.style.display = (translateBox.style.display === 'none' || translateBox.style.display === '')
+      ? 'block'
+      : 'none';
+  });
+
+  // Observe language change and hide dropdown
+  const observer = new MutationObserver(() => {
+    const combo = document.querySelector('.goog-te-combo');
+    if (combo && combo.value !== '') {
+      translateBox.style.display = 'none';
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Optional: hide if user clicks outside
+  document.addEventListener('click', function(event) {
+    if (!translateBox.contains(event.target) && !translateBtn.contains(event.target)) {
+      translateBox.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

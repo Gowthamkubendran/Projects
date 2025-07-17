@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="icon" type="image/png" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+     <section class="productcontainer">
+        <div class="header">
+            
+                <a class="logo"  href="#"><img src="logo.jpg" alt="">
+                <h1>Gk Cashews</h1>
+                </a>
+    
+            <div class="menu" id="i1">
+                <div class="cross"><i  class="fa fa-times-circle" onclick="hidemenu()"></i></div>
+                    <a href="home.html" class="home">HOME</a>
+                    <a href="product.html">PRODUCTS</a>
+                    <a href="about.html">ABOUT</a>  
+                            
+            </div>
+          <div class="menubar"><i class="fa fa-bars"   onclick="showmenu()"></i></div>
+        </div>
+        <div></div>
+        <p class="one" id="phead">About US</p>
+      
+         
+    </section>
+
+ <div class="section">
+    <div class="abtcont">
+      <p class="about-text">
+        At the heart of our journey lies the dedication of hardworking women farmers who carefully harvest premium cashew nuts.
+        Our process begins at the farm and flows through our hygienic processing unit — boiling, drying, peeling, and grading each nut with care.
+        We uphold traditional methods combined with modern precision to preserve the natural flavor and nutritional richness of every kernel.
+        Rooted in rural strength, led by women, we bring you nature’s finest, crafted with pride.
+      </p>
+    </div>
+  </div>
+  <h1 class="contact-us" id="contact-us">Contact Us</h1>
+
+  <div class="afterabout">
+    <div class="section">
+    <div class="aboutcontent">
+      
+      <div class="contact-cards">
+        <div class="contact-card" id="contact-card">
+          <h3><a target="_blank" aria-label="Address"><i class="fas fa-map-marker-alt" style="color: white;"></i></a> Location</h3>
+          <p>2/3 Veerakkan, Main Road, Pillakurichi [PO], Seendurai [TK],<br />Ariyalur [DT] - 621806</p>
+        </div>
+        <div class="contact-card">
+          <h3> <a aria-label="Email" style="color: white;"><i class="fas fa-envelope"></i></a> Email</h3>
+          <p>umakumar4622@gmail.com</p>
+        </div>
+        <div class="contact-card">
+          <h3><a  aria-label="Phone"><i class="fas fa-phone"  style="color: white;"></i></a> Contact Number</h3>
+          <p>9843662744</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="map-container" data-aos="fade-up" data-aos-delay="400">
+    <div class="visit-us-text" style="text-align: center; margin-bottom: 20px;">
+      <h2 id="visit">Visit Us</h2>
+      <p id="contact-us-p">Here is our location on the map.<br />Come see us in person!</p>
+    </div>
+    <iframe id="iframe"
+      src="https://www.google.com/maps?q=2/3+Veerakkan,+Main+Road,+Pillakurichi,+Ariyalur,+Tamil+Nadu+621806&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
+
+
+
+ 
+
+
+
+
+<footer class="footer">
+  <div class="footer-content">
+   <div class="footer-icons">
+      <a href="mailto:umakumar4622@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+919843662744" aria-label="Phone"><i class="fas fa-phone"></i></a>
+      <a href="/about.html" aria-label="About Us"><i class="fas fa-info-circle"></i></a>
+      <a href="https://www.google.com/maps?ll=11.243853,79.252641&z=16&t=m&hl=en-US&gl=US&mapclient=embed&q=Veerakkan+-+Ponparappi+Rd+Kandiyankollai,+Tamil+Nadu+621806" target="_blank" aria-label="Address"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Rural Cashew Business | GK Cashews
+  </div>
+</footer>
+
+
+<!-- Scroll to Top Button -->
+
+<i class="fa-solid fa-arrow-up" onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"></i>
+  <div id="translateBtn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png" alt="Translate">
+</div>
+  <!-- Google Translate Dropdown -->
+  <div id="google_translate_element" style="display: none;"></div>
+
+
+
+
+  <script>
+
+
+
+// Wait for Google Translate to render before enabling toggle
+ 
+  // Set default language based on cookie (before Google loads)
+  (function() {
+    var lang = (document.cookie.match(/(^|;\s*)googtrans=\/en\/(\w+)/) || [])[2];
+    if (lang) {
+      var newCookie = "/en/" + lang;
+      document.cookie = "googtrans=" + newCookie + ";path=/";
+      document.cookie = "googtrans=" + newCookie + ";path=/;domain=" + location.hostname;
+    }
+  })();
+
+
+
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ta',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+    }, 'google_translate_element');
+  }
+
+  // Save user-selected language to cookie
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new MutationObserver(() => {
+      const iframe = document.querySelector('iframe.goog-te-menu-frame');
+      if (iframe) {
+        try {
+          const items = iframe.contentDocument.querySelectorAll('.goog-te-menu2-item span.text');
+          items.forEach(span => {
+            span.addEventListener('click', function() {
+              const lang = span.innerText.toLowerCase().includes("tamil") ? 'ta' : 'en';
+              const val = '/en/' + lang;
+              document.cookie = 'googtrans=' + val + ';path=/';
+              document.cookie = 'googtrans=' + val + ';path=/;domain=' + location.hostname;
+            });
+          });
+        } catch (err) {
+          console.warn("Translate frame error", err);
+        }
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+
+
+  
+
+
+   
+
+  function observeTranslate() {
+    const observer = new MutationObserver(() => {
+      const isTranslated = document.documentElement.classList.contains("translated-ltr") ||
+                           document.documentElement.classList.contains("translated-rtl");
+      
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  window.addEventListener("load", observeTranslate);
+
+
+ window.onload = function () {
+  const translatebtn = document.getElementById('translateBtn');
+  const translateBox = document.getElementById('google_translate_element');
+
+
+  const navbarToggle = document.getElementById("navbar-toggle");
+  const navbar = document.getElementById("navbar");
+
+  if (navbarToggle && navbar) {
+    navbarToggle.addEventListener("click", () => {
+      navbar.classList.toggle("open");
+    });
+  }
+
+  if (translatebtn && translateBox) {
+    translatebtn.addEventListener('click', () => {
+      translateBox.style.display =
+        (translateBox.style.display === 'none' || translateBox.style.display === '') ? 'block' : 'none';
+         this.classList.toggle('active');
+    });
+  } else {
+    console.warn("translatebtn or translateBox not found");
+  }
+
+
+  const observer = new MutationObserver(() => {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo && combo.value !== '') {
+    translateBox.style.display = 'none';
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
+           
+};
+
+
+
+
+
+  </script>
+ <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

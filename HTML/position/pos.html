@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --bg:white(191, 13, 13);
+            --ho:red;
+        }
+        body{
+            background-color:var(--bg);
+        }
+
+        p{
+        border: 1px solid rgb(143, 143, 241);
+        padding:10px;
+        box-shadow: 10px 5px 5px blue;
+        text-align: center;
+
+        }
+        .p{
+            grid-column: span 2;
+        }
+        .grid{
+            margin:10px;
+            padding:10px;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:10px;
+            border: 1px solid rgb(143, 143, 241);
+        }
+        p:hover{
+            box-shadow: 10px 5px 5px var(--ho);
+        }
+        a:hover{
+            font-size: larger;
+            color:black;
+        }
+        a:active{
+            font-size: larger;
+            color:aqua;
+        };
+        a:visited{
+            color:rgb(162, 10, 10);
+        }
+        p::first-line{
+            color:blue;
+            
+        }
+        h1::first-letter{ color:aqua;font-size: 2em;}
+        p::selection{ color:greenyellow;background-color: black;}
+        li::marker{
+            content:"✨";
+        }
+    </style>
+</head>
+<body>
+    <h1>header</h1>
+    <a href="https:\\google.com">google</a>
+    <div class="grid">
+        <p >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit commodi quisquam est iure. Atque mollitia quaerat ex autem nulla adipisci dolorem? Adipisci suscipit vitae placeat, iure provident molestias sunt aliquam eaque quia ipsum eius labore natus sit quae rerum ipsa quod inventore odio dicta obcaecati libero! Repellendus nihil quam impedit quasi doloribus distinctio culpa ad, quidem facilis sapiente nobis in odit. Expedita adipisci nulla distinctio, aliquam ex atque quos! Soluta magnam dolorum expedita maxime illum! Molestias odit temporibus accusantium mollitia, cum aspernatur officiis repellendus, quam nulla omnis recusandae rerum, consequatur obcaecati quo quasi illo at excepturi veritatis. Officia, hic nulla.hvyyvyvyvyvyvyvy</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, quam perspiciatis corrupti laborum aliquid aut molestias modi fuga numquam. Voluptas quisquam voluptatum quod dolorem. Deserunt ex amet saepe provident quia! Fugiat deserunt cumque sequi explicabo architecto reiciendis necessitatibus incidunt optio, omnis animi odit. Adipisci illo corrupti soluta quisquam iure id maxime, culpa ipsa iusto expedita sapiente, natus suscipit! Sed ipsa voluptas tempore saepe animi eligendi et harum possimus? Porro sint beatae quam placeat! Libero tenetur maiores quis ipsa a. Aut minus, ducimus accusantium fugiat necessitatibus nisi cupiditate rem iure autem ad voluptatibus dolores quia excepturi culpa doloremque obcaecati, exercitationem eaque!</p>
+        <p class="p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, quam perspiciatis corrupti laborum aliquid aut molestias modi fuga numquam. Voluptas quisquam voluptatum quod dolorem. Deserunt ex amet saepe provident quia! Fugiat deserunt cumque sequi explicabo architecto reiciendis necessitatibus incidunt optio, omnis animi odit. Adipisci illo corrupti soluta quisquam iure id maxime, culpa ipsa iusto expedita sapiente, natus suscipit! Sed ipsa voluptas tempore saepe animi eligendi et harum possimus? Porro sint beatae quam placeat! Libero tenetur maiores quis ipsa a. Aut minus, ducimus accusantium fugiat necessitatibus nisi cupiditate rem iure autem ad voluptatibus dolores quia excepturi culpa doloremque obcaecati, exercitationem eaque!</p>
+
+    </div>
+    <ul>
+        <li>apple</li>
+        <li>graphes</li>
+        <li>banana</li>
+    </ul>
+
+</body>
+</html>

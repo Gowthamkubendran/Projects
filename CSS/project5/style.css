@@ -1,0 +1,104 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui;
+
+}
+.home{
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/banner.png);
+    background-position: center;
+    background-size: cover;
+    
+}
+.menubar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2% 2%;
+    flex-wrap: wrap;
+}
+.menubar img{
+    width: 140px;
+}
+.menu-item ul{
+    display:flex;
+    width: 100%;
+    list-style: none;
+    column-gap: 6%;
+}
+
+.menu-item a{
+    text-decoration: none;
+    color: white;
+}
+.reg{
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+}
+.reg a{
+    text-decoration: none;
+    color: black;
+
+}
+.container{
+    margin: 13% auto;
+    text-align: center;
+    color: white;
+}
+.container h1{
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.container-content{
+   
+    width: 80%;
+    margin: 10px auto;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 50px;
+
+    
+}
+ .container-content form{
+    display:flex;
+    align-items: center;
+    column-gap: 10px;
+ }
+ .container-content form div{
+    text-align: left;
+    display: block;
+    
+ }
+ .container-content form label{
+    color: black;
+    font-weight: 600;
+ }
+ .loc{
+    flex: 55%;
+    padding: 9px;
+ }
+ .container-content form input{
+    width: 100%;
+    background-color:whitesmoke;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+ }
+ .container-content form button{
+    width: 75px;
+    border: none;
+    border-radius:50%;
+    background: #ff5361;
+    outline: none;
+    cursor: pointer;
+    height: 50px;
+ }
+form button img{
+    width: 15px;
+ }

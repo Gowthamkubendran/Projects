@@ -1,0 +1,39 @@
+*{
+    padding:0px;
+    margin:0px;}
+.outerbox{
+    background-color:white;
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    grid-template-rows: 100px 200px;
+
+    
+
+}
+.innerbox{
+    font-size:20px;
+    background-color:yellow;
+    color:blue;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+.innerbox1{
+    font-size:20px;
+    background-color:yellow;
+    color:blue;
+    display: grid;
+    justify-content: center;
+    grid-column: span 2;
+    align-items: center;
+}
+.innerbox4{
+    font-size:20px;
+    background-color:yellow;
+    color:blue;
+    display: grid;
+    justify-content: center;
+    grid-row:span 5;
+    align-content:center;
+}

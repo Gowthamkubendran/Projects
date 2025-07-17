@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+
+
+    <title>GK Cashews</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="icon" type="image/png" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<body>
+    <section class="container">
+        <div class="header">
+            
+                <a class="logo"  href="#"><img src="logo.jpg" alt="">
+                <h1>Gk Cashews</h1>
+                </a>
+    
+            <div class="menu" id="i1">
+                <div class="cross"><i  class="fa fa-times-circle" onclick="hidemenu()"></i></div>
+                    <a href="home.html" class="home">HOME</a>
+                    <a href="product.html">PRODUCTS</a>
+                    <a href="about.html">ABOUT</a>  
+                
+                            
+            </div>
+          <div class="menubar"><i class="fa fa-bars"   onclick="showmenu()"></i></div>
+        </div>
+        <div class="main">
+        <p class="one">Welcome to GK Cashews<p>
+          <div class="two"><p>Delivering premium quality cashew nuts sourced directly from our farms. We believe in freshness, tradition, and trust. Taste the difference with GK Cashews!.</p></div> 
+           <div class="three"><input type="button" onclick="window.location.href='about.html';" value="Visit Us To Know More"></div> 
+        </div>
+    </section>
+        <section class="facilities">
+        <div class="facilityheader">
+            <h1>How GK Cashews Serves You</h1>
+            <p id="facilitypara">Handcrafted by empowered women, our premium cashews are delivered fresh from sustainable farms.<br/>
+Every bite supports eco-friendly practices and local entrepreneurship.</p>
+        </div>
+        <div class="ourfacility">
+            <div id="p1">
+                <img src="p1.jpg" alt="">
+                <h2>
+                From Farm to Door
+                </h2>
+                <p>Experience the ultimate farm‑to‑door journey with us.
+Our mission is to bring nature’s finest, premium cashews from local farms straight to your doorstep.</p>
+               
+            </div>
+            <div id="p2">
+                <img src="p2.jpg" alt="">
+                <h2>Women Entrepreneurs</h2>
+                <p>Driven by passionate women entrepreneurs, we ensure every cashew is handcrafted with care and quality.</p>
+            </div>
+            <div id="p3">
+                <img src="p3.jpg" alt="">
+                <h2>Sustainable Agriculture</h2>
+                <p>We prioritise sustainability and eco-friendly practices. By choosing gkcashews, you’re supporting environmentally responsible agriculture</p>
+                </div>
+
+
+        </div>
+    </section>
+
+       <section class="course">
+        <div class="cwo">
+            <h1  id="why">Why Choose GK Cashews</h1>
+            <p></p>
+        </div>
+        <div class="row">
+            <div id="q1">
+                <h1>Transparency</h1>
+                <p>We believe in open and honest relationships with our customers. You'll always know where your food comes from.</p>
+            </div>
+                <div id="q2">
+                    <h1>Quality Assurance</h1>
+                   <p>We have stringent quality control measures in place to ensure the best standards for every product.</p>
+                    
+                </div>
+                <div id="q3">
+                <h1>variety</h1>
+                <p>Our extensive selection ensures you’ll find everything from staples to seasonal specialties all in one place.</p>
+            </div>
+            <div id="q4">
+                <h1>Convenience</h1>
+                  <p>Say goodbye to crowded markets and long queues. Enjoy fresh groceries delivered straight to your door.</p>
+            </div>
+            </div>
+
+        </div>
+    </section>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-icons">
+      <a href="mailto:umakumar4622@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+919843662744" aria-label="Phone"><i class="fas fa-phone"></i></a>
+      <a href="/about.html" aria-label="About Us"><i class="fas fa-info-circle"></i></a>
+      <a href="https://www.google.com/maps?ll=11.243853,79.252641&z=16&t=m&hl=en-US&gl=US&mapclient=embed&q=Veerakkan+-+Ponparappi+Rd+Kandiyankollai,+Tamil+Nadu+621806" target="_blank" aria-label="Address"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Rural Cashew Business | GK Cashews
+  </div>
+</footer>
+
+
+<i class="fa-solid fa-arrow-up" onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"></i>
+
+<div id="translateBtn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png" alt="Translate">
+</div>
+  <!-- Google Translate Dropdown -->
+  <div id="google_translate_element" style="display: none;"></div>
+  <script>
+
+
+
+
+
+// Wait for Google Translate to render before enabling toggle
+ 
+  // Set default language based on cookie (before Google loads)
+  (function() {
+    var lang = (document.cookie.match(/(^|;\s*)googtrans=\/en\/(\w+)/) || [])[2];
+    if (lang) {
+      var newCookie = "/en/" + lang;
+      document.cookie = "googtrans=" + newCookie + ";path=/";
+      document.cookie = "googtrans=" + newCookie + ";path=/;domain=" + location.hostname;
+    }
+  })();
+
+
+
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ta',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+    }, 'google_translate_element');
+  }
+
+  // Save user-selected language to cookie
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new MutationObserver(() => {
+      const iframe = document.querySelector('iframe.goog-te-menu-frame');
+      if (iframe) {
+        try {
+          const items = iframe.contentDocument.querySelectorAll('.goog-te-menu2-item span.text');
+          items.forEach(span => {
+            span.addEventListener('click', function() {
+              const lang = span.innerText.toLowerCase().includes("tamil") ? 'ta' : 'en';
+              const val = '/en/' + lang;
+              document.cookie = 'googtrans=' + val + ';path=/';
+              document.cookie = 'googtrans=' + val + ';path=/;domain=' + location.hostname;
+            });
+          });
+        } catch (err) {
+          console.warn("Translate frame error", err);
+        }
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+
+
+  
+
+
+   
+
+  function observeTranslate() {
+    const observer = new MutationObserver(() => {
+      const isTranslated = document.documentElement.classList.contains("translated-ltr") ||
+                           document.documentElement.classList.contains("translated-rtl");
+      
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  window.addEventListener("load", observeTranslate);
+
+
+ window.onload = function () {
+  const translatebtn = document.getElementById('translateBtn');
+  const translateBox = document.getElementById('google_translate_element');
+
+
+  const navbarToggle = document.getElementById("navbar-toggle");
+  const navbar = document.getElementById("navbar");
+
+  if (navbarToggle && navbar) {
+    navbarToggle.addEventListener("click", () => {
+      navbar.classList.toggle("open");
+    });
+  }
+
+  if (translatebtn && translateBox) {
+    translatebtn.addEventListener('click', () => {
+      translateBox.style.display =
+        (translateBox.style.display === 'none' || translateBox.style.display === '') ? 'block' : 'none';
+        
+    });
+  } else {
+    console.warn("translatebtn or translateBox not found");
+  }
+
+
+  const observer = new MutationObserver(() => {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo && combo.value !== '') {
+    translateBox.style.display = 'none';
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
+           
+};
+
+
+
+
+
+  </script>
+
+  <!-- Google Translate Script -->
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="script.js"></script>
+</body>
+
+</html>

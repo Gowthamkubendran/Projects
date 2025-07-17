@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>window.location Example</title>
+</head>
+<body>
+
+  <h1>window.location Properties</h1>
+  <p id="output"></p>
+
+  <script>
+    // Access the window.location object
+    var location = window.location;
+
+    // Display the properties of the location object
+    document.getElementById('output').innerHTML = 
+      "<strong>hash:</strong> " + location.hash + "<br>" +
+      "<strong>host:</strong> " + location.host + "<br>" +
+      "<strong>hostname:</strong> " + location.hostname + "<br>" +
+      "<strong>href:</strong> " + location.href + "<br>" +
+      "<strong>origin:</strong> " + location.origin + "<br>" +
+      "<strong>pathname:</strong> " + location.pathname + "<br>" +
+      "<strong>port:</strong> " + location.port + "<br>" +
+      "<strong>protocol:</strong> " + location.protocol + "<br>";
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bids</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Soft Beige */
+            color: #333333; /* Dark Gray */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #FFFFFF; /* White */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50; /* Deep Green */
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .item-card {
+            background-color: #FFFFFF; /* White */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .item-card h4 {
+            margin: 0 0 10px;
+            color: #4CAF50; /* Deep Green */
+        }
+
+        .item-card p {
+            margin: 5px 0;
+        }
+
+        .item-card .current-bid {
+            font-weight: bold;
+            color: #FF9800; /* Warm Orange */
+        }
+
+        .item-card .time-remaining {
+            font-weight: bold;
+            color: #FF9800; /* Warm Orange */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Current Bids</h2>
+        <div id="itemList"></div>
+    </div>
+
+    <script>
+        function formatTimeRemaining(timeRemaining) {
+            if (timeRemaining <= 0) {
+                return "Bidding ended.";
+            }
+            const minutes = Math.floor(timeRemaining / 60000);
+            const seconds = Math.floor((timeRemaining % 60000) / 1000);
+            return `Time remaining: ${minutes}m ${seconds}s`;
+        }
+
+        function loadItems() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const itemList = document.getElementById('itemList');
+            itemList.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const timeRemaining = item.bidEndTime - Date.now();
+                const status = timeRemaining > 0 ? formatTimeRemaining(timeRemaining) : `Sold to ${item.currentBidder} for $${item.currentBid}`;
+
+                itemList.innerHTML += `
+                    <div class="item-card" id="item-${index}">
+                        <img src="${item.image}" alt="${item.name}">
+                        <h4>${item.name}</h4>
+                        <p>Current Bid: $<span class="current-bid">${item.currentBid.toFixed(2)}</span></p>
+                        <p>Bid Holder: ${item.currentBidder}</p>
+                        <p class="time-remaining">${status}</p>
+                    </div>`;
+            });
+        }
+
+        function updateRemainingTime() {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            const soldItems = JSON.parse(localStorage.getItem('soldItems')) || [];
+
+            items.forEach((item, index) => {
+                const timeRemaining = item.bidEndTime - Date.now();
+                const timeText = document.querySelector(`#item-${index} .time-remaining`);
+
+                if (timeRemaining > 0) {
+                    timeText.innerText = formatTimeRemaining(timeRemaining);
+                } else {
+                    // Move the item to soldItems
+                    soldItems.push(items[index]);
+                    localStorage.setItem('soldItems', JSON.stringify(soldItems));
+
+                    // Remove the sold item from the active items list
+                    items.splice(index, 1);
+                    localStorage.setItem('items', JSON.stringify(items));
+
+                    // Reload the items on the page
+                    loadItems();
+                }
+            });
+        }
+
+        window.onload = function() {
+            loadItems();
+            setInterval(updateRemainingTime, 1000); // Update time every second
+        };
+    </script>
+</body>
+</html>

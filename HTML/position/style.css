@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin:0;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: rgb(112, 244, 178);
+    color:rgba(15, 15, 181, 0.799);
+}
+
+a{
+    display: inline-block;
+    position: relative;
+    top:200px;
+    left:45%;
+    text-decoration: none;
+    border: 2px solid rgb(112, 244, 178);
+    border-radius: 10%;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: whitesmoke;
+    color:black(15, 15, 81, 0.799);
+    transition-property:all;
+    transition-duration: 1s;
+    animation-name: anchor;
+    animation-duration: 4s;
+}
+
+div{
+    padding:10px;
+    text-align: center;
+    margin:10px;
+    position: relative;
+    top: 190px;
+    animation-name: para;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+h1{
+    text-align: center;
+    animation-name: header;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    position: relative;
+    border-radius: 5px;
+}
+@keyframes header{
+    0%{ top:-50px;
+    }
+    100%{ top:180px;}
+}
+@keyframes para{
+    0%{ left: -1000px;}
+    100%{ left:0%;}
+}
+a:hover{
+    transform: rotateY(180deg);
+}
+@keyframes anchor{
+    0%{ opacity: 0%;}
+    100%{ opacity: 100%;}
+}

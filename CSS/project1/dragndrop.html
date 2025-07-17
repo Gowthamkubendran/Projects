@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop Example</title>
+  <style>
+    #drag1 {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+      padding: 10px;
+      margin: 10px;
+    }
+    #dropzone {
+      width: 200px;
+      height: 200px;
+      background-color: lightgreen;
+      border: 2px dashed #000;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>HTML Drag and Drop Example</h2>
+<div id="dropzone" ondragover="allowdrag(event)" ondrop="drop(event)">Drop here</div>
+
+<div id="drag1" draggable="true" ondragstart="drag(event)" >Drag me</div>
+
+<audio  controls>
+    <source src="Man with a Movie Camera (2014 Restoration trailer) In UK cinemas 31 July 2015 _ BFI Release _ BFI.mp4" type="audio/mp3">
+    Your browser does not support the video tag.
+</audio>
+<form>
+<input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Three letter country code">
+</form>
+
+  
+
+<script>
+    function drag(e){
+        e.dataTransfer.setData("div",e.target.id);
+    }
+    function allowdrag(e){
+        e.preventDefault();
+    }
+    function drop(e){
+        e.preventDefault();
+        var code=e.dataTransfer.getData("div");
+        e.target.appendChild(document.getElementById(code));
+    }
+
+</script>
+
+</body>
+</html>

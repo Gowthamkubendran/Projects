@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Products | Cashew Business</title>
+ <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="icon" type="image/png" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+
+   <section class="productcontainer">
+        <div class="header">
+            
+                <a class="logo"  href="#"><img src="logo.jpg" alt="">
+                <h1>Gk Cashews</h1>
+                </a>
+    
+            <div class="menu" id="i1">
+                <div class="cross"><i  class="fa fa-times-circle" onclick="hidemenu()"></i></div>
+                    <a href="home.html" class="home">HOME</a>
+                    <a href="product.html">PRODUCTS</a>
+                    <a href="about.html">ABOUT</a>  
+                            
+            </div>
+          <div class="menubar"><i class="fa fa-bars"   onclick="showmenu()"></i></div>
+        </div>
+        <div></div>
+        <p id="phead" class="one">Our Products</p>
+      
+         
+    </section>
+
+<h2 id="productpara">Fresh & Pure Cashews from the Heart of the Village</h2>
+
+<div class="products">
+  <div id="zoomBox" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 800px;
+  max-height: 85vh;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+  text-align: center;
+">
+  <span onclick="closeZoom()" style="
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+    cursor: pointer;
+    color: #333;
+  ">&times;</span>
+  <img id="zoomedImg" style="max-width: 100%; max-height: 75vh; border-radius: 8px;">
+</div>
+
+<!-- Background Overlay -->
+<div id="overlay" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 900;
+"></div>
+
+
+  <div class="card" id="card">
+    <img src="img1.jpg" alt ="Cashew Grade 1" class="productImg" style="width: 100%;" >
+    
+
+    <div class="cc">
+    <h3>Premium Grade Cashews</h3>
+  <div><span>Weight: </span> 2kg</div>
+  <div><span>Price: </span> &#8377;730.00</div>
+    <p>Whole, crisp, and delicious cashews sourced directly from rural farms.</p>
+    <button class="buy-button" onclick="buyProduct()">Buy</button>
+    
+    </div>
+  </div>
+  <div class="card" id="card">
+    <img src="img2.jpg" alt="Cashew Grade 2" class="productImg" >
+     <div class="cc">
+    <h3>Standard Grade Cashews</h3>
+    <div><span>Weight: </span> 1/8kg</div>
+  <div><span>Price: </span> &#8377;550.00</div>
+    <p>Quality cashews at an affordable price for daily use and cooking needs.</p>
+    <button class="buy-button"onclick="buyProduct()">Buy</button>
+    </div>
+  </div>
+  <div class="card" id="card">
+    <img src="img3.jpg" alt="Cashew Pieces" class="productImg" >
+     <div class="cc">
+    <h3>Cashew Pieces</h3>
+    <div><span>Weight: </span> 4kg</div>
+  <div><span>Price: </span> &#8377;640.00</div>
+    <p>Perfect for making sweets, gravies, and snacks, available at great value.</p>
+    <button class="buy-button"onclick="buyProduct()">Buy</button>
+    </div>
+  </div>
+  <div class="card"  id="card">
+    <img src="img3.jpg" alt="Cashew Pieces" class="productImg" >
+     <div class="cc">
+    <h3>Cashew Pieces</h3>
+    <div><span>Weight: </span> 1kg</div>
+  <div><span>Price: </span> &#8377;850.00</div>
+    <p>Perfect for making sweets, gravies, and snacks, available at great value.</p>
+    <button class="buy-button"onclick="buyProduct()">Buy</button>
+    </div>
+  </div>
+  <div class="card" id="card">
+    <img src="img3.jpg" alt="Cashew Pieces" class="productImg" >
+     <div class="cc">
+    <h3>Cashew Pieces</h3>
+    <div><span>Weight: </span> 1kg</div>
+  <div><span>Price: </span> &#8377;730.00</div>
+    <p>Perfect for making sweets, gravies, and snacks, available at great value.</p>
+    <button class="buy-button"onclick="buyProduct()">Buy</button>
+    </div>
+
+  </div>
+</div>
+<div class="overpop" id="op">
+<div id="pop" class="popup">
+<h3>You can place this order by calling</h3>
+<a href="tel:+91 9199887766"> +91 9199887766</a>
+<span onclick="closepopup()" style="
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 34px;
+    cursor: pointer;
+    color: #333;
+  ">&times;</span>
+</div>
+</div>
+<i class="fa-solid fa-arrow-up" onclick="scrollToTop()" id="scrollTopBtn" title="Go to top"></i>
+  
+
+
+<footer class="footer">
+  <div class="footer-content">
+   <div class="footer-icons">
+      <a href="mailto:umakumar4622@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+919843662744" aria-label="Phone"><i class="fas fa-phone"></i></a>
+      <a href="/about.html" aria-label="About Us"><i class="fas fa-info-circle"></i></a>
+      <a href="https://www.google.com/maps?ll=11.243853,79.252641&z=16&t=m&hl=en-US&gl=US&mapclient=embed&q=Veerakkan+-+Ponparappi+Rd+Kandiyankollai,+Tamil+Nadu+621806" target="_blank" aria-label="Address"><i class="fas fa-map-marker-alt"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Rural Cashew Business | GK Cashews
+  </div>
+</footer>
+
+<div id="translateBtn">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png" alt="Translate">
+</div>
+  <!-- Google Translate Dropdown -->
+  <div id="google_translate_element" style="display: none;"></div>
+
+  
+
+
+  <script>
+
+
+
+// Wait for Google Translate to render before enabling toggle
+ 
+  // Set default language based on cookie (before Google loads)
+  (function() {
+    var lang = (document.cookie.match(/(^|;\s*)googtrans=\/en\/(\w+)/) || [])[2];
+    if (lang) {
+      var newCookie = "/en/" + lang;
+      document.cookie = "googtrans=" + newCookie + ";path=/";
+      document.cookie = "googtrans=" + newCookie + ";path=/;domain=" + location.hostname;
+    }
+  })();
+
+
+
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,ta',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+    }, 'google_translate_element');
+  }
+
+  // Save user-selected language to cookie
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new MutationObserver(() => {
+      const iframe = document.querySelector('iframe.goog-te-menu-frame');
+      if (iframe) {
+        try {
+          const items = iframe.contentDocument.querySelectorAll('.goog-te-menu2-item span.text');
+          items.forEach(span => {
+            span.addEventListener('click', function() {
+              const lang = span.innerText.toLowerCase().includes("tamil") ? 'ta' : 'en';
+              const val = '/en/' + lang;
+              document.cookie = 'googtrans=' + val + ';path=/';
+              document.cookie = 'googtrans=' + val + ';path=/;domain=' + location.hostname;
+            });
+          });
+        } catch (err) {
+          console.warn("Translate frame error", err);
+        }
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+
+
+
+  
+
+
+   
+
+  function observeTranslate() {
+    const observer = new MutationObserver(() => {
+      const isTranslated = document.documentElement.classList.contains("translated-ltr") ||
+                           document.documentElement.classList.contains("translated-rtl");
+      
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  window.addEventListener("load", observeTranslate);
+
+
+ window.onload = function () {
+  const translatebtn = document.getElementById('translateBtn');
+  const translateBox = document.getElementById('google_translate_element');
+
+
+  const navbarToggle = document.getElementById("navbar-toggle");
+  const navbar = document.getElementById("navbar");
+
+  if (navbarToggle && navbar) {
+    navbarToggle.addEventListener("click", () => {
+      navbar.classList.toggle("open");
+    });
+  }
+
+  if (translatebtn && translateBox) {
+    translatebtn.addEventListener('click', () => {
+      translateBox.style.display =
+        (translateBox.style.display === 'none' || translateBox.style.display === '') ? 'block' : 'none';
+         this.classList.toggle('active');
+    });
+  } else {
+    console.warn("translatebtn or translateBox not found");
+  }
+
+
+  const observer = new MutationObserver(() => {
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo && combo.value !== '') {
+    translateBox.style.display = 'none';
+  }
+});
+observer.observe(document.body, { childList: true, subtree: true });
+           
+};
+
+
+
+
+
+
+
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

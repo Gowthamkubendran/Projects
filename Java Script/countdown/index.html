@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countdown</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .count{
+            display: flex;
+            gap: 20px;
+        }
+         p{
+            text-align: center;
+            font-size: 3em;  
+        }
+
+        body{
+            
+            background:rgb(196, 1, 196);
+           color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <p>Event Starts in</p>
+    <div class="container">
+        
+    <div class="count">
+        <div class="days">
+            <h1 id="days">00  :</h1>
+            <span>Days</span>
+        </div>
+        <div class="hours">
+            <h1 id="hours">00  :</h1>
+            <span>Hours</span>
+        </div>
+        <div class="minutes">
+            <h1 id="minutes">00  :</h1>
+            <span>Minutes</span>
+        </div>
+        <div class="seconds">
+            <h1 id="seconds">00</h1>
+            <span>seconds</span>
+        </div>
+      
+    </div>
+    </div>
+
+    <script>
+
+        const days=document.getElementById("days");
+        const hours=document.getElementById("hours");
+        const minutes=document.getElementById("minutes");
+        const seconds=document.getElementById("seconds");
+
+      
+        
+        const inter=window.setInterval(()=>{
+            const eventtime=new Date("17 nov 2025 15:27:00").getTime();
+        const currenttime=new Date().getTime();
+        const dist=eventtime-currenttime;
+
+        if(dist<1){
+                breakevent();
+            }
+
+        let day=Math.floor(dist/(1000*60*60*24));
+        let hou=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+        let min=Math.floor(( dist % (1000*60*60))/(1000*60));
+        let sec=Math.floor(( dist%(1000*60))/1000);
+            days.innerHTML= (day < 10 )? "0"+day : day;
+            hours.innerHTML=(hou < 10)? "0"+hou : hou;
+            minutes.innerHTML=(min<10)? "0"+min : min;
+            seconds.innerHTML= (sec<10)? "0"+sec : sec;
+
+    
+        },1000);
+
+        function breakevent(){
+            clearInterval(inter);
+            days.innerHTML="00";
+            hours.innerHTML="00";
+            minutes.innerHTML="00";
+            seconds.innerHTML='00';
+
+        };
+      
+    </script>
+</body>
+</html>

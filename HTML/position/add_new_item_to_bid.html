@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Item</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Soft Beige */
+            color: #333333; /* Dark Gray */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #FFFFFF; /* White */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        h2 {
+            text-align: center;
+            color: #4CAF50; /* Deep Green */
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Input and Button Styles */
+        input, button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input {
+            border: 1px solid #4CAF50; /* Deep Green */
+            background-color: #FFFFFF; /* White */
+            color: #333333; /* Dark Gray */
+        }
+
+        input:focus {
+            border-color: #FF9800; /* Warm Orange */
+        }
+
+        button {
+            background-color: #FF9800; /* Warm Orange */
+            color: #FFFFFF; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #4CAF50; /* Deep Green */
+        }
+
+        /* Placeholder Text Styles */
+        ::placeholder {
+            color: #AAAAAA; /* Light Gray */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add New Item for Bidding</h2>
+        <input type="text" id="itemName" placeholder="Item Name" required>
+        <input type="number" id="itemStartingBid" placeholder="Starting Bid" required>
+        <input type="file" id="itemImage" accept="image/*">
+        <input type="number" id="itemDuration" placeholder="Bid Duration (minutes)" required>
+        <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <script>
+        function addItem() {
+            const itemName = document.getElementById('itemName').value;
+            const itemStartingBid = parseFloat(document.getElementById('itemStartingBid').value);
+            const itemImage = document.getElementById('itemImage').files[0];
+            const itemDuration = parseInt(document.getElementById('itemDuration').value) || 5; // Default to 5 minutes if no duration is provided
+
+            const item = {
+                name: itemName,
+                startingBid: itemStartingBid,
+                currentBid: itemStartingBid,
+                currentBidder: "None",
+                bidEndTime: Date.now() + (itemDuration * 60 * 1000) // Set bid duration based on user input
+            };
+
+            if (itemName && itemStartingBid) {
+                if (itemImage) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        item.image = e.target.result; // Store image as data URL
+                        saveItem(item);
+                    };
+                    reader.readAsDataURL(itemImage);
+                } else {
+                    saveItem(item);
+                }
+            } else {
+                alert('Please enter item name, starting bid, and bid duration.');
+            }
+        }
+
+        function saveItem(item) {
+            const items = JSON.parse(localStorage.getItem('items')) || [];
+            items.push(item);
+            localStorage.setItem('items', JSON.stringify(items));
+            alert('Item added successfully!');
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemStartingBid').value = '';
+            document.getElementById('itemImage').value = '';
+            document.getElementById('itemDuration').value = '';
+        }
+    </script>
+</body>
+</html>
