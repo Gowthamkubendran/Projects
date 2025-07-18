@@ -1,0 +1,3 @@
+[submodule "ProjectBirthday/birthday-checker"]
+	path = ProjectBirthday/birthday-checker
+	url = https://github.com/Gowthamkubendran/birthday-checker.git
